@@ -14,6 +14,7 @@ const LABELS: Record<ActiveCategory, string> = {
   encoders: 'Encoders',
   formatters: 'Formatters',
   generators: 'Generators',
+  converters: 'Converters',
 };
 
 export default function CategoryTabs({ active, onChange }: CategoryTabsProps) {

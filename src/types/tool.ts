@@ -1,6 +1,6 @@
 import type React from 'react';
 
-export type ToolCategory = 'text' | 'encoders' | 'formatters' | 'generators';
+export type ToolCategory = 'text' | 'encoders' | 'formatters' | 'generators' | 'converters';
 
 export interface ToolManifest {
   id: string;

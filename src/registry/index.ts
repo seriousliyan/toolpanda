@@ -1,6 +1,7 @@
 import type { ToolManifest, ToolCategory } from '../types/tool';
 
 export const tools: ToolManifest[] = [
+  // Text
   {
     id: 'word-counter',
     name: 'Word Counter',
@@ -29,6 +30,16 @@ export const tools: ToolManifest[] = [
     load: () => import('../tools/text/text-diff'),
   },
   {
+    id: 'regex-tester',
+    name: 'Regex Tester',
+    description: 'Test regular expressions with live match highlighting and group capture',
+    category: 'text',
+    tags: ['regex', 'regexp', 'regular expression', 'match', 'pattern', 'test'],
+    icon: '🔍',
+    load: () => import('../tools/text/regex-tester'),
+  },
+  // Encoders
+  {
     id: 'base64',
     name: 'Base64',
     description: 'Encode and decode Base64 strings',
@@ -56,6 +67,16 @@ export const tools: ToolManifest[] = [
     load: () => import('../tools/encoders/jwt-decoder'),
   },
   {
+    id: 'html-entities',
+    name: 'HTML Entities',
+    description: 'Encode and decode HTML entities to prevent XSS and display special characters',
+    category: 'encoders',
+    tags: ['html', 'entity', 'encode', 'decode', 'escape', 'xss', 'special characters'],
+    icon: '🏷️',
+    load: () => import('../tools/encoders/html-entities'),
+  },
+  // Formatters
+  {
     id: 'json-formatter',
     name: 'JSON Formatter',
     description: 'Format, validate, and minify JSON data',
@@ -73,6 +94,7 @@ export const tools: ToolManifest[] = [
     icon: '📄',
     load: () => import('../tools/formatters/markdown-preview'),
   },
+  // Generators
   {
     id: 'uuid-generator',
     name: 'UUID Generator',
@@ -100,6 +122,43 @@ export const tools: ToolManifest[] = [
     icon: '🔑',
     load: () => import('../tools/generators/password-generator'),
   },
+  // Converters
+  {
+    id: 'color-converter',
+    name: 'Color Converter',
+    description: 'Convert colors between HEX, RGB, and HSL with a live preview',
+    category: 'converters',
+    tags: ['color', 'hex', 'rgb', 'hsl', 'convert', 'picker', 'css'],
+    icon: '🎨',
+    load: () => import('../tools/converters/color-converter'),
+  },
+  {
+    id: 'timestamp',
+    name: 'Timestamp Converter',
+    description: 'Convert Unix timestamps to human-readable dates and back',
+    category: 'converters',
+    tags: ['timestamp', 'unix', 'epoch', 'date', 'time', 'convert', 'utc'],
+    icon: '⏱️',
+    load: () => import('../tools/converters/timestamp'),
+  },
+  {
+    id: 'csv-to-json',
+    name: 'CSV → JSON',
+    description: 'Convert CSV data to JSON — supports headers, custom delimiters',
+    category: 'converters',
+    tags: ['csv', 'json', 'convert', 'table', 'data', 'spreadsheet'],
+    icon: '📊',
+    load: () => import('../tools/converters/csv-to-json'),
+  },
+  {
+    id: 'number-base',
+    name: 'Number Base Converter',
+    description: 'Convert numbers between decimal, binary, octal, and hexadecimal',
+    category: 'converters',
+    tags: ['binary', 'hex', 'decimal', 'octal', 'base', 'convert', 'number'],
+    icon: '🔢',
+    load: () => import('../tools/converters/number-base'),
+  },
 ];
 
-export const CATEGORIES: ToolCategory[] = ['text', 'encoders', 'formatters', 'generators'];
+export const CATEGORIES: ToolCategory[] = ['text', 'encoders', 'formatters', 'generators', 'converters'];

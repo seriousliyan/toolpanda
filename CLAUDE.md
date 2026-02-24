@@ -26,7 +26,7 @@ npm run preview  # preview production build
 | `src/hooks/useTheme.ts` | Dark mode toggle — reads/writes `toolpanda:theme` in localStorage, applies `.dark` class to `<html>` |
 
 ## Tool Categories
-`text` | `encoders` | `formatters` | `generators`
+`text` | `encoders` | `formatters` | `generators` | `converters`
 
 ## Adding a New Tool — 2 Steps
 1. Create `src/tools/<category>/<tool-id>/index.tsx` — default export a React component
@@ -36,10 +36,10 @@ npm run preview  # preview production build
   id: 'my-tool',          // URL slug → /tools/my-tool
   name: 'My Tool',
   description: 'One-liner shown on card',
-  category: 'text',       // text | encoders | formatters | generators
+  category: 'converters', // text | encoders | formatters | generators | converters
   tags: ['keyword', ...], // searched by search bar
   icon: '🔧',
-  load: () => import('../tools/text/my-tool'),
+  load: () => import('../tools/converters/my-tool'),
 }
 ```
 
@@ -59,20 +59,26 @@ npm run preview  # preview production build
 
 Dark mode is class-based (`.dark` on `<html>`). Toggle configured with `@custom-variant dark (&:where(.dark, .dark *))`. `textarea`/`input` backgrounds are handled globally in CSS via `--color-input-bg`, so tool components don't need explicit dark bg on inputs.
 
-## Current Tools (11)
+## Current Tools (17)
 | ID | Name | Category |
 |----|------|----------|
 | `word-counter` | Word Counter | text |
 | `case-converter` | Case Converter | text |
 | `text-diff` | Text Diff | text |
+| `regex-tester` | Regex Tester | text |
 | `base64` | Base64 | encoders |
 | `url-encode` | URL Encode / Decode | encoders |
 | `jwt-decoder` | JWT Decoder | encoders |
+| `html-entities` | HTML Entities | encoders |
 | `json-formatter` | JSON Formatter | formatters |
 | `markdown-preview` | Markdown Preview | formatters |
 | `uuid-generator` | UUID Generator | generators |
 | `lorem-ipsum` | Lorem Ipsum | generators |
 | `password-generator` | Password Generator | generators |
+| `color-converter` | Color Converter | converters |
+| `timestamp` | Timestamp Converter | converters |
+| `csv-to-json` | CSV → JSON | converters |
+| `number-base` | Number Base Converter | converters |
 
 ## Architecture Notes
 - Tools are **lazy-loaded** — each ships as a separate Vite chunk; zero tool code on the home page

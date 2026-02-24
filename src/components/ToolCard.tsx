@@ -10,6 +10,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   encoders: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
   formatters: 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300',
   generators: 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+  converters: 'bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300',
 };
 
 export default function ToolCard({ tool }: ToolCardProps) {
