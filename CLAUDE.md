@@ -60,7 +60,7 @@ npm run preview  # preview production build
 
 Dark mode is class-based (`.dark` on `<html>`). Toggle configured with `@custom-variant dark (&:where(.dark, .dark *))`. `textarea`/`input` backgrounds are handled globally in CSS via `--color-input-bg`, so tool components don't need explicit dark bg on inputs.
 
-## Current Tools (17)
+## Current Tools (18)
 | ID | Name | Category |
 |----|------|----------|
 | `word-counter` | Word Counter | text |
@@ -80,6 +80,7 @@ Dark mode is class-based (`.dark` on `<html>`). Toggle configured with `@custom-
 | `timestamp` | Timestamp Converter | converters |
 | `csv-to-json` | CSV → JSON | converters |
 | `number-base` | Number Base Converter | converters |
+| `pomodoro` | Pomodoro Timer | generators |
 
 ## Architecture Notes
 - Tools are **lazy-loaded** — each ships as a separate Vite chunk; zero tool code on the home page

@@ -122,6 +122,15 @@ export const tools: ToolManifest[] = [
     icon: '🔑',
     load: () => import('../tools/generators/password-generator'),
   },
+  {
+    id: 'pomodoro',
+    name: 'Pomodoro Timer',
+    description: 'Focus timer with adjustable work and break intervals and browser notifications',
+    category: 'generators',
+    tags: ['pomodoro', 'timer', 'focus', 'productivity', 'break', 'countdown', 'work'],
+    icon: '🍅',
+    load: () => import('../tools/generators/pomodoro-timer'),
+  },
   // Converters
   {
     id: 'color-converter',
