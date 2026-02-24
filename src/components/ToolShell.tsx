@@ -15,7 +15,7 @@ export default function ToolShell({ manifest, children }: ToolShellProps) {
 
   return (
     <div className="min-h-screen bg-[var(--color-surface)]">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-[1120px] mx-auto px-4 py-8">
         <Link
           to="/"
           className="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)] hover:text-gray-900 dark:hover:text-slate-100 mb-6 no-underline transition-colors"

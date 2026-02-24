@@ -12,7 +12,7 @@ export default function Header({ query, onQueryChange }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-[var(--color-border)] shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-4">
+      <div className="max-w-[1440px] mx-auto px-4 h-14 flex items-center gap-4">
         <Link to="/" className="flex items-center gap-2 shrink-0 no-underline">
           <span className="text-xl">🐼</span>
           <span className="font-semibold text-gray-900 dark:text-slate-100 text-base tracking-tight">ToolPanda</span>

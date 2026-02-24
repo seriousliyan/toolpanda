@@ -63,7 +63,7 @@ export default function HomePage({ query }: HomePageProps) {
     <div className="min-h-screen bg-[var(--color-surface)]">
       <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="max-w-[1440px] mx-auto px-4 py-8">
 
         {/* Favorites */}
         {showSections && favoriteTools.length > 0 && (

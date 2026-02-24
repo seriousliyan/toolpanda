@@ -22,7 +22,7 @@ export default function ToolCard({ tool, isFavorite = false, atMax = false, onTo
   const canFavorite = isFavorite || !atMax;
 
   return (
-    <div className="relative group h-28">
+    <div className="relative group h-[140px]">
       {/* Main card — navigates to tool */}
       <button
         onClick={() => navigate(`/tools/${tool.id}`)}
@@ -31,7 +31,7 @@ export default function ToolCard({ tool, isFavorite = false, atMax = false, onTo
         <div className="flex items-center gap-3 w-full pr-6">
           <span className="text-2xl shrink-0">{tool.icon}</span>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-900 dark:text-slate-100 text-sm leading-tight truncate group-hover:text-[var(--color-accent)] transition-colors">
+            <h3 className="font-semibold text-gray-900 dark:text-slate-100 text-sm leading-tight line-clamp-3 group-hover:text-[var(--color-accent)] transition-colors">
               {tool.name}
             </h3>
           </div>
@@ -39,7 +39,7 @@ export default function ToolCard({ tool, isFavorite = false, atMax = false, onTo
             {tool.category}
           </span>
         </div>
-        <p className="text-xs text-[var(--color-muted)] leading-relaxed line-clamp-1">
+        <p className="text-xs text-[var(--color-muted)] leading-relaxed line-clamp-2">
           {tool.description}
         </p>
       </button>

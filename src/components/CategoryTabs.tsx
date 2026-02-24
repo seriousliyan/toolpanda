@@ -22,7 +22,7 @@ export default function CategoryTabs({ active, onChange }: CategoryTabsProps) {
 
   return (
     <div className="border-b border-[var(--color-border)] bg-white dark:bg-slate-900">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-[1440px] mx-auto px-4">
         <nav className="flex gap-1 -mb-px overflow-x-auto" aria-label="Tool categories">
           {tabs.map((tab) => {
             const isActive = tab === active;
