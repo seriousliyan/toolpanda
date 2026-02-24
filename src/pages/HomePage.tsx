@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Star } from 'lucide-react';
 import CategoryTabs from '../components/CategoryTabs';
 import ToolCard from '../components/ToolCard';
 import { tools } from '../registry';
+import { useFavorites } from '../hooks/useFavorites';
 import type { ToolCategory } from '../types/tool';
 
 type ActiveCategory = 'all' | ToolCategory;
@@ -30,6 +31,7 @@ export function addRecent(id: string) {
 export default function HomePage({ query }: HomePageProps) {
   const [activeCategory, setActiveCategory] = useState<ActiveCategory>('all');
   const [recentIds, setRecentIds] = useState<string[]>([]);
+  const { ids: favoriteIds, toggle: toggleFavorite, isFavorite, atMax } = useFavorites();
 
   useEffect(() => {
     setRecentIds(getRecent());
@@ -47,18 +49,48 @@ export default function HomePage({ query }: HomePageProps) {
     );
   });
 
+  const favoriteTools = favoriteIds
+    .map((id) => tools.find((t) => t.id === id))
+    .filter(Boolean) as typeof tools;
+
   const recentTools = recentIds
     .map((id) => tools.find((t) => t.id === id))
     .filter(Boolean) as typeof tools;
 
-  const showRecent = !query.trim() && activeCategory === 'all' && recentTools.length > 0;
+  const showSections = !query.trim() && activeCategory === 'all';
 
   return (
     <div className="min-h-screen bg-[var(--color-surface)]">
       <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        {showRecent && (
+
+        {/* Favorites */}
+        {showSections && favoriteTools.length > 0 && (
+          <section className="mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <h2 className="text-sm font-medium text-[var(--color-muted)] uppercase tracking-wide">
+                Favorites
+              </h2>
+              <span className="text-xs text-[var(--color-muted)]">({favoriteTools.length}/8)</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+              {favoriteTools.map((tool) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  isFavorite={isFavorite(tool.id)}
+                  atMax={atMax}
+                  onToggleFavorite={toggleFavorite}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Recently used */}
+        {showSections && recentTools.length > 0 && (
           <section className="mb-10">
             <div className="flex items-center gap-2 mb-4">
               <Clock className="w-4 h-4 text-[var(--color-muted)]" />
@@ -68,12 +100,19 @@ export default function HomePage({ query }: HomePageProps) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {recentTools.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  isFavorite={isFavorite(tool.id)}
+                  atMax={atMax}
+                  onToggleFavorite={toggleFavorite}
+                />
               ))}
             </div>
           </section>
         )}
 
+        {/* All tools / search results */}
         <section>
           {query.trim() || activeCategory !== 'all' ? (
             <div className="flex items-center gap-2 mb-4">
@@ -93,7 +132,13 @@ export default function HomePage({ query }: HomePageProps) {
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {filtered.map((tool) => (
-                <ToolCard key={tool.id} tool={tool} />
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  isFavorite={isFavorite(tool.id)}
+                  atMax={atMax}
+                  onToggleFavorite={toggleFavorite}
+                />
               ))}
             </div>
           ) : (

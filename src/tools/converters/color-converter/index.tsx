@@ -91,20 +91,25 @@ export default function ColorConverter() {
 
   return (
     <div className="space-y-6">
-      {/* Color preview + picker */}
+      {/* Color preview — swatch is the picker trigger */}
       <div className="flex items-center gap-4">
-        <div
-          className="w-20 h-20 rounded-xl border border-[var(--color-border)] shrink-0 shadow-sm"
-          style={{ backgroundColor: previewColor }}
-        />
-        <div className="flex-1 space-y-2">
-          <label className="block text-xs font-medium text-[var(--color-muted)]">Color picker</label>
+        <label className="relative shrink-0 cursor-pointer" title="Click to open color picker">
+          <div
+            className="w-20 h-20 rounded-xl border-2 border-[var(--color-border)] shadow-sm"
+            style={{ backgroundColor: previewColor }}
+          />
           <input
             type="color"
             value={previewColor}
             onChange={(e) => setHex(e.target.value)}
-            className="w-full h-10 rounded-lg border border-[var(--color-border)] cursor-pointer bg-transparent"
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer rounded-xl"
           />
+        </label>
+        <div>
+          <p className="text-base font-mono font-medium text-gray-800 dark:text-slate-200">
+            {previewColor.toUpperCase()}
+          </p>
+          <p className="text-xs text-[var(--color-muted)] mt-0.5">Click swatch to open picker</p>
         </div>
       </div>
 

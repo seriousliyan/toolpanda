@@ -24,6 +24,7 @@ npm run preview  # preview production build
 | `src/components/ToolShell.tsx` | Wrapper for tool pages (back link + heading) |
 | `src/index.css` | `@import "tailwindcss"` + `@theme` tokens + `.dark` overrides |
 | `src/hooks/useTheme.ts` | Dark mode toggle — reads/writes `toolpanda:theme` in localStorage, applies `.dark` class to `<html>` |
+| `src/hooks/useFavorites.ts` | Favorites state — reads/writes `toolpanda:favorites` in localStorage, max 8 tools |
 
 ## Tool Categories
 `text` | `encoders` | `formatters` | `generators` | `converters`
@@ -84,6 +85,8 @@ Dark mode is class-based (`.dark` on `<html>`). Toggle configured with `@custom-
 - Tools are **lazy-loaded** — each ships as a separate Vite chunk; zero tool code on the home page
 - `localStorage` key `toolpanda:recent` stores last **4** visited tool IDs (matches the 4-column xl grid)
 - `localStorage` key `toolpanda:theme` stores `'light'` or `'dark'`; falls back to `prefers-color-scheme`
+- `localStorage` key `toolpanda:favorites` stores up to **8** favorited tool IDs; shown above Recently Used on home page
+- **Favorites UX**: star icon appears on card hover (top-right, absolute-positioned sibling button) and always visible next to tool title in ToolShell. `ToolCard` must receive `onToggleFavorite` prop to show the star — cards without it (future read-only contexts) render without the star. `ToolCard` outer element is `<div>` (not `<button>`) to allow valid HTML nesting of the star `<button>` alongside the navigate `<button>`.
 - Unknown `:toolId` routes redirect to `/` via `<Navigate replace>`
 - Error boundary in `ToolPage` catches broken tool components gracefully
 - `document.title` is set per tool on mount and restored on unmount
