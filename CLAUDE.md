@@ -21,7 +21,7 @@ npm run preview  # preview production build
 | `src/App.tsx` | Routes: `/` → HomeLayout, `/tools/:toolId` → ToolLayout |
 | `src/pages/HomePage.tsx` | Search + category filter logic; exports `addRecent()` |
 | `src/pages/ToolPage.tsx` | `React.lazy` loads tool, error boundary, sets page title |
-| `src/components/ToolShell.tsx` | Wrapper for tool pages (back link + heading) |
+| `src/components/ToolShell.tsx` | Wrapper for tool pages (back link + heading); `max-w-[1440px]` matches home layout |
 | `src/index.css` | `@import "tailwindcss"` + `@theme` tokens + `.dark` overrides |
 | `src/hooks/useTheme.ts` | Dark mode toggle — reads/writes `toolpanda:theme` in localStorage, applies `.dark` class to `<html>` |
 | `src/hooks/useFavorites.ts` | Favorites state — reads/writes `toolpanda:favorites` in localStorage, max 8 tools |
